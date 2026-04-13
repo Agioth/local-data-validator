@@ -3,13 +3,9 @@ from playwright.async_api import async_playwright
 import psycopg2
 from datetime import datetime
 import random
+from database import get_connection # ADICIONE NO TOPO
 
-params = {
-    "host": "localhost",
-    "database": "postgres",
-    "user": "postgres",
-    "password": "1234"
-}
+conn = get_connection() # USE ASSIM
 
 async def coletar_dados_humanos():
     async with async_playwright() as p:

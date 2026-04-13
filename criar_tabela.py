@@ -1,12 +1,7 @@
 import psycopg2
+from database import get_connection # ADICIONE NO TOPO
 
-# Coloque aqui os mesmos dados que você usou no teste_conexao
-params = {
-    "host": "localhost",
-    "database": "postgres",
-    "user": "postgres",
-    "password": "1234"
-}
+conn = get_connection() # USE ASSIM
 
 def criar_estrutura():
     commands = (
@@ -28,7 +23,7 @@ def criar_estrutura():
     
     conn = None
     try:
-        conn = psycopg2.connect(**params)
+        conn = get_connection()
         cur = conn.cursor()
         
         # Executa o comando de criação
