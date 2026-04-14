@@ -1,26 +1,36 @@
-Dev Log: A Virada de Chave do Local-Data-Validator
+Dev Log: Do Código ao Produto (O Salto de Maturidade)
 Data: 13 de Abril de 2026 | Por: Thiago (Agioth)
 
-Hoje foi o dia em que o projeto deixou de ser um "script de estudos" para ganhar corpo de ferramenta profissional. O antigo smart-cat-pro agora se chama Local-Data-Validator, um nome que reflete melhor o que estamos construindo: uma solução real para auditoria de SEO Local.
+A sessão de hoje foi marcada pela palavra Robustez. Entendi que, para garantir uma vaga Home Office, não basta o código "funcionar na minha máquina"; ele precisa ser seguro, testável e fácil de ser movido para qualquer lugar.
 
-A Evolução da Inteligência
-O grande salto do dia foi no analisador.py. Antes, eu tinha apenas uma lista bruta de dados que não me dizia muita coisa. Agora, o script pensa: ele utiliza um algoritmo de Scoring que prioriza falhas críticas (como empresas sem telefone ou perfis não reivindicados no Google).
+O Pilar da Segurança e Arquitetura
+A grande mudança estrutural foi a morte dos params espalhados pelo código.
 
-O resultado prático? De 112 pet shops mapeados em Castanhal, o código "filtrou o ruído" e me entregou 21 leads de altíssima prioridade. Isso não é apenas extração de dados; é inteligência de mercado.
+Centralização: Criamos o database.py, um "porteiro" único para o banco de dados.
 
-Organizando a Casa (Git & GitHub)
-No GitHub, decidi contar uma história através dos commits, dividida em dois atos:
+Blindagem de Credenciais: Implementei o uso de variáveis de ambiente com o .env. Agora, minhas senhas não ficam expostas no código.
 
-O Bastidor (Commit 1): Subi tudo, inclusive os scripts de correção e testes de banco. Quis registrar que sei construir as ferramentas de suporte necessárias quando as coisas apertam.
+O Escudo .gitignore: Configurei o Git para nunca "vazar" informações sensíveis. Isso é maturidade profissional básica que me diferencia de amadores.
 
-A Entrega (Commit 2): Fiz a refatoração, removi os "andaimes" e deixei apenas o core do sistema. O objetivo aqui foi clareza e Clean Code, mostrando que o projeto está pronto para crescer.
+Qualidade e Validação de Dados (Pydantic v2)
+O projeto agora tem um "filtro de pureza". Com o models.py usando Pydantic, os dados brutos do PostgreSQL são transformados em objetos validados.
 
-O Olhar de Engenheiro para o Futuro
-Nem tudo é perfeito, e notar isso é o que me faz evoluir. Já mapeei que os próximos passos precisam focar na higienização dos dados. Quero implementar validações (Regex) para garantir que os telefones estão no padrão brasileiro e criar uma lógica para detectar empresas que podem ter fechado, evitando perda de tempo com dados obsoletos.
+Cálculo Automático: O sistema limpa o telefone via Regex e calcula o Leads Quality Score no momento da criação do objeto.
 
-Próximos Passos (Roadmap)
-Módulo de Output (gerar_propostas.py): Criar o script que gera documentos individuais com o "diagnóstico" de cada uma das 21 empresas críticas.
+Legenda Comercial: A exportação agora gera um relatório CSV que já vem com uma legenda explicativa, transformando dados técnicos em valor para o setor de vendas.
 
-Validação de Dados: Adicionar filtros para identificar números de telefone inválidos ou fora do padrão.
+Mentalidade de Engenharia: "Menos é Mais"
+Fizemos uma limpeza profunda no repositório. Deletei o analisador.py e scripts de rascunho. O projeto agora é enxuto, direto ao ponto e segue padrões de mercado. A introdução do test_projeto.py garante que qualquer alteração futura possa ser validada em segundos, evitando o medo de "cagar o código".
 
-Documentação Final: Escrever o README.md principal do projeto explicando a arquitetura técnica para recrutadores.
+Roadmap para a Robustez Total (v2.0)
+Definimos os quatro pilares que transformarão o Local-Data-Validator em um projeto nível Pleno:
+
+Logs Profissionais: Implementar rastreabilidade de erros para operações remotas.
+
+Dockerização: Criar containers para que o projeto rode em qualquer sistema sem atritos.
+
+Pytest: Evoluir os testes simples para uma suíte de testes automatizados profissional.
+
+Interface Streamlit: Criar a camada visual (Dashboard) para transformar os dados em gráficos inteligentes.
+
+Frase do dia: "O código que eu escrevo hoje é o meu currículo de amanhã."

@@ -24,7 +24,7 @@ async def coletar_dados_humanos():
         links_vistos = set() # Memória para não repetir cliques
         lista_seletor = 'div[role="feed"]'
         
-        conn = psycopg2.connect(**params)
+        conn = get_connection()
         cur = conn.cursor()
 
         # Aumentamos o número de rolagens, mas com passos menores
