@@ -1,13 +1,12 @@
 import psycopg2
 import csv
 from models import CompanyModel
-from database import get_connection # ADICIONE NO TOPO
-
-conn = get_connection() # USE ASSIM
+from database import get_connection # Importação correta
 
 def exportar_final():
     try:
-        with psycopg2.connect(**params) as conn:
+        # CORREÇÃO AQUI: Usamos o get_connection() diretamente no with
+        with get_connection() as conn:
             with conn.cursor() as cur:
                 cur.execute("""
                     SELECT nome_empresa, categoria, telefone, nota_google, reivindicado, comentarios_nao_respondidos 
@@ -22,14 +21,14 @@ def exportar_final():
                 with open(arquivo, mode='w', newline='', encoding='utf-8-sig') as f:
                     escritor = csv.writer(f, delimiter=';')
                     
-                    # --- LEGENDA DO RELATÓRIO (Aparecerá no topo do Excel) ---
+                    # --- LEGENDA DO RELATÓRIO ---
                     escritor.writerow(['LEGENDA DE CLASSIFICAÇÃO'])
                     escritor.writerow(['STATUS', 'CRITÉRIO', 'DESCRIÇÃO'])
                     escritor.writerow(['🔥 Ouro', 'Score <= 30', 'Alta urgência: Erros graves de SEO/Presença Digital.'])
                     escritor.writerow(['👀 Oportunidade', 'Score > 30', 'Médio prazo: Possui presença básica, mas precisa de ajustes.'])
-                    escritor.writerow([]) # Linha em branco para separar da tabela
+                    escritor.writerow([]) # Linha em branco
                     
-                    # Cabeçalho da tabela de dados
+                    # Cabeçalho da tabela
                     escritor.writerow(['Empresa', 'Telefone Limpo', 'Score', 'Status'])
 
                     for linha in dados_brutos:
