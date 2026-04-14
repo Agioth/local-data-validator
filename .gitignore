@@ -12,3 +12,6 @@ __pycache__/
 
 # Relatórios gerados (opcional, se não quiser subir os CSVs de teste)
 *.csv
+
+#logs de erros
+app_robusto.log
